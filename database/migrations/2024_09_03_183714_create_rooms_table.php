@@ -14,6 +14,7 @@ class CreateRoomsTable extends Migration
             $table->string('type');
             $table->text('description');
             $table->decimal('price_per_night', 8, 2);
+            $table->string('image_url')->nullable();
             $table->timestamps();
         });
     }
