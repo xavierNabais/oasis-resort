@@ -1,6 +1,6 @@
 # Oasis Resort - Sistema de Gestão de Reservas
 
-**[Portuguese Version](#oasis-resort---sistema-de-gestão-de-reservas) | [Versão em Inglês](#oasis-resort---room-reservation-management-system)**
+**[Portuguese Version](#oasis-resort---sistema-de-gestão-de-reservas) | [English Version](#oasis-resort---room-reservation-management-system)**
 
 **Oasis Resort** é uma aplicação web sofisticada desenvolvida para a gestão eficiente de reservas de quartos de hotel. Este projeto oferece uma plataforma completa para clientes realizarem reservas de forma intuitiva e segura, além de fornecer um painel administrativo robusto para gerenciar quartos e reservas.
 
