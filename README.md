@@ -23,6 +23,7 @@ O **Oasis Resort** foi desenvolvido com o objetivo de modernizar e otimizar a ge
 - **Autenticação**: Registro, login e logout, garantindo acesso seguro às funcionalidades do sistema.
 - **Pesquisa e Navegação de Quartos**: Visualização detalhada de quartos disponíveis, com descrições e imagens.
 - **Reserva de Quartos**: Processo de reserva simplificado, com verificação de disponibilidade em tempo real.
+- **Códigos de Desconto**: Aplicação de códigos de desconto durante o processo de reserva para ofertas especiais e promoções.
 - **Integração com API de Pagamento**: Pagamentos seguros e integrados para facilitar o processo de reserva.
 - **Gestão de Perfil**: Atualização de informações pessoais e visualização do histórico de reservas.
 
@@ -141,6 +142,7 @@ Esta estrutura garante que o sistema possa lidar com o ciclo completo de reserva
 - **Authentication**: User registration, login, and logout to ensure secure access to system features.
 - **Room Search and Navigation**: Detailed view of available rooms with descriptions and images.
 - **Room Booking**: Simplified booking process with real-time availability check.
+- **Discount Codes**: Application of discount codes during the booking process for special offers and promotions.
 - **Payment API Integration**: Secure and integrated payments to facilitate the reservation process.
 - **Profile Management**: Update personal information and view reservation history.
 
