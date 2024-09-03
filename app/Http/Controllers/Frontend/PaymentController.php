@@ -79,6 +79,7 @@ class PaymentController extends Controller
             $reservation->number_of_guests = $request->input('number_of_guests');
             $reservation->client_id = auth()->id();
             $reservation->total_price = $request->input('total_price');
+            $reservation->status = 'success';
             $reservation->save();
     
             Log::info('Reserva criada com sucesso:', ['reservation' => $reservation]);
