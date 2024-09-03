@@ -1,64 +1,238 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Oasis Resort - Sistema de Gestão de Reservas
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**[Portuguese Version](#oasis-resort---sistema-de-gestão-de-reservas) | [English Version](#oasis-resort---room-reservation-management-system)**
 
-## About Laravel
+**Oasis Resort** é uma aplicação web sofisticada desenvolvida para a gestão eficiente de reservas de quartos de hotel. Este projeto oferece uma plataforma completa para clientes realizarem reservas de forma intuitiva e segura, além de fornecer um painel administrativo robusto para gerenciar quartos e reservas.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Índice
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Sobre o Projeto](#sobre-o-projeto)
+- [Funcionalidades](#funcionalidades)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Estrutura de Base de Dados](#estrutura-de-base-de-dados)
+- [Uso](#uso)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Sobre o Projeto
 
-## Learning Laravel
+O **Oasis Resort** foi desenvolvido com o objetivo de modernizar e otimizar a gestão de reservas de um resort. Através desta plataforma, clientes podem navegar, escolher e reservar quartos, enquanto os administradores podem gerenciar facilmente as operações do resort, garantindo uma experiência fluida e integrada para todos os usuários.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Funcionalidades
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Para Clientes:
 
-## Laravel Sponsors
+- **Autenticação**: Registro, login e logout, garantindo acesso seguro às funcionalidades do sistema.
+- **Pesquisa e Navegação de Quartos**: Visualização detalhada de quartos disponíveis, com descrições e imagens.
+- **Reserva de Quartos**: Processo de reserva simplificado, com verificação de disponibilidade em tempo real.
+- **Códigos de Desconto**: Aplicação de códigos de desconto durante o processo de reserva para ofertas especiais e promoções.
+- **Integração com API de Pagamento**: Pagamentos seguros e integrados para facilitar o processo de reserva.
+- **Gestão de Perfil**: Atualização de informações pessoais e visualização do histórico de reservas.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Para Administradores:
 
-### Premium Partners
+- **Painel Administrativo**: Acesso exclusivo ao painel para gestão de operações do resort.
+- **Gerenciamento de Quartos**: Adição, edição e remoção de quartos, com controle total sobre as informações exibidas.
+- **Gestão de Reservas**: Visualização e administração de todas as reservas realizadas, com opções para edição e cancelamento.
+- **Relatórios e Logs**: Acesso a logs de atividades e geração de relatórios para monitorar o desempenho do resort.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Tecnologias Utilizadas
 
-## Contributing
+- **Backend**: Laravel (Framework PHP) para uma estrutura sólida e escalável.
+- **Banco de Dados**: MySQL, utilizado para armazenamento de dados de clientes, quartos e reservas.
+- **Autenticação**: Utilização de guards para diferenciar entre clientes e funcionários.
+- **API de Pagamento**: Integração segura para processar pagamentos de forma eficiente e confiável.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Frontend**:
+  - Blade (Motor de templates do Laravel) para renderização de páginas dinâmicas.
+  - HTML5, CSS3 e JavaScript para uma interface de usuário responsiva e moderna.
+  - Bootstrap para um design consistente e de fácil utilização.
 
-## Code of Conduct
+## Estrutura de Base de Dados
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+A base de dados do Oasis Resort foi projetada para lidar eficientemente com vários aspectos da gestão do resort, incluindo clientes, quartos, reservas e pagamentos. Abaixo está uma visão geral simples das tabelas principais:
 
-## Security Vulnerabilities
+### Visão Geral das Tabelas:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- **clientes**:
+  - `id`: Chave primária.
+  - `nome`: Nome completo do cliente.
+  - `email`: Endereço de email do cliente (único).
+  - `senha`: Senha criptografada.
+  - `created_at`: Data de registro do cliente.
+  - `updated_at`: Data da última atualização dos dados do cliente.
 
-## License
+- **funcionarios**:
+  - `id`: Chave primária.
+  - `nome`: Nome completo do funcionário.
+  - `email`: Endereço de email do funcionário (único).
+  - `senha`: Senha criptografada.
+  - `cargo`: Cargo do funcionário (ex.: admin, gerente).
+  - `created_at`: Data de registro do funcionário.
+  - `updated_at`: Data da última atualização dos dados do funcionário.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **quartos**:
+  - `id`: Chave primária.
+  - `numero`: Número do quarto.
+  - `tipo`: Tipo de quarto (ex.: solteiro, duplo, suíte).
+  - `descricao`: Descrição detalhada do quarto.
+  - `preco`: Preço por noite.
+  - `created_at`: Data de adição do quarto.
+  - `updated_at`: Data da última atualização dos dados do quarto.
+
+- **reservas**:
+  - `id`: Chave primária.
+  - `cliente_id`: Chave estrangeira referência `clientes`.
+  - `quarto_id`: Chave estrangeira referência `quartos`.
+  - `check_in`: Data de check-in.
+  - `check_out`: Data de check-out.
+  - `numero_de_hospedes`: Número de hóspedes na reserva.
+  - `status`: Status da reserva (ex.: confirmada, cancelada).
+  - `created_at`: Data de realização da reserva.
+  - `updated_at`: Data da última atualização da reserva.
+
+- **pagamentos**:
+  - `id`: Chave primária.
+  - `reserva_id`: Chave estrangeira referência `reservas`.
+  - `quantia`: Quantia paga.
+  - `data_pagamento`: Data do pagamento.
+  - `metodo_pagamento`: Método usado para o pagamento (ex.: cartão de crédito, PayPal).
+  - `status`: Status do pagamento (ex.: completo, pendente).
+  - `created_at`: Data de processamento do pagamento.
+  - `updated_at`: Data da última atualização do registro de pagamento.
+
+Esta estrutura garante que o sistema possa lidar com o ciclo completo de reservas de quartos, desde o registro de clientes e a gestão de quartos até as reservas e pagamentos.
+
+## Uso
+
+1. **Acesso ao Sistema**:
+   - Clientes podem acessar o site principal para visualizar quartos e realizar reservas.
+   - Administradores acessam o painel administrativo para gerenciar o sistema.
+
+2. **Autenticação e Navegação**:
+   - A plataforma exige autenticação para acessar funcionalidades críticas, garantindo segurança.
+   - Após o login, os clientes podem navegar pelo catálogo de quartos e efetuar reservas.
+
+3. **Processamento de Pagamentos**:
+   - O sistema integra uma API de pagamento para facilitar transações seguras diretamente pela plataforma.
+
+4. **Gestão de Conteúdo**:
+   - Administradores têm controle total sobre o conteúdo do site, podendo adicionar ou remover quartos, visualizar reservas e monitorar a atividade dos usuários.
+
+# Oasis Resort - Room Reservation Management System
+
+**[Portuguese Version](#oasis-resort---sistema-de-gestão-de-reservas) | [English Version](#oasis-resort---room-reservation-management-system)**
+
+**Oasis Resort** is a sophisticated web application developed for the efficient management of hotel room reservations. This project provides a comprehensive platform for clients to make reservations in an intuitive and secure manner while offering a robust administrative panel to manage rooms, reservations, and financial transactions.
+
+## Table of Contents
+
+- [About the Project](#about-the-project)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Database Structure](#database-structure)
+- [Usage](#usage)
+
+## About the Project
+
+**Oasis Resort** was developed to modernize and optimize the reservation management of a resort. The platform allows clients to browse, choose, and book rooms, while administrators can efficiently manage the resort's operations. The result is a seamless and integrated experience for both users and staff.
+
+## Features
+
+### For Clients:
+
+- **Authentication**: User registration, login, and logout to ensure secure access to system features.
+- **Room Search and Navigation**: Detailed view of available rooms with descriptions and images.
+- **Room Booking**: Simplified booking process with real-time availability check.
+- **Discount Codes**: Application of discount codes during the booking process for special offers and promotions.
+- **Payment API Integration**: Secure and integrated payments to facilitate the reservation process.
+- **Profile Management**: Update personal information and view reservation history.
+
+### For Administrators:
+
+- **Administrative Panel**: Exclusive access to a control panel for managing resort operations.
+- **Room Management**: Add, edit, and remove rooms with full control over displayed information.
+- **Reservation Management**: View and manage all reservations, with options to edit and cancel.
+- **Reports and Logs**: Access activity logs and generate reports to monitor resort performance.
+
+## Technologies Used
+
+- **Backend**: Laravel (PHP Framework) for a solid and scalable structure.
+- **Database**: MySQL, used for storing client, room, and reservation data.
+- **Authentication**: Use of guards to differentiate between clients and employees.
+- **Payment API**: Secure integration to process payments efficiently and reliably.
+
+- **Frontend**:
+  - Blade (Laravel Templating Engine) for rendering dynamic pages.
+  - HTML5, CSS3, and JavaScript for a responsive and modern user interface.
+  - Bootstrap for consistent and user-friendly design.
+
+## Database Structure
+
+The database for Oasis Resort is designed to efficiently handle various aspects of hotel management, including clients, rooms, reservations, and payments. Below is a simple overview of the key tables:
+
+### Tables Overview:
+
+- **clients**:
+  - `id`: Primary key.
+  - `name`: The client's full name.
+  - `email`: The client's email address (unique).
+  - `password`: Encrypted password.
+  - `created_at`: Timestamp of when the client was registered.
+  - `updated_at`: Timestamp of the last update to the client's data.
+
+- **employees**:
+  - `id`: Primary key.
+  - `name`: The employee's full name.
+  - `email`: The employee's email address (unique).
+  - `password`: Encrypted password.
+  - `role`: The role of the employee (e.g., admin, manager).
+  - `created_at`: Timestamp of when the employee was registered.
+  - `updated_at`: Timestamp of the last update to the employee's data.
+
+- **rooms**:
+  - `id`: Primary key.
+  - `number`: Room number.
+  - `type`: Type of the room (e.g., single, double, suite).
+  - `description`: Detailed description of the room.
+  - `price`: Price per night.
+  - `created_at`: Timestamp of when the room was added.
+  - `updated_at`: Timestamp of the last update to the room's data.
+
+- **reservations**:
+  - `id`: Primary key.
+  - `client_id`: Foreign key referencing `clients`.
+  - `room_id`: Foreign key referencing `rooms`.
+  - `check_in`: Check-in date.
+  - `check_out`: Check-out date.
+  - `number_of_guests`: The number of guests for the reservation.
+  - `status`: Reservation status (e.g., confirmed, canceled).
+  - `created_at`: Timestamp of when the reservation was made.
+  - `updated_at`: Timestamp of the last update to the reservation.
+
+- **payments**:
+  - `id`: Primary key.
+  - `reservation_id`: Foreign key referencing `reservations`.
+  - `amount`: Amount paid.
+  - `payment_date`: Date of payment.
+  - `payment_method`: Method used for payment (e.g., credit card, PayPal).
+  - `status`: Payment status (e.g., completed, pending).
+  - `created_at`: Timestamp of when the payment was processed.
+  - `updated_at`: Timestamp of the last update to the payment record.
+
+This structure ensures that the system can handle the full lifecycle of room bookings, from client registration and room management to reservations and payments.
+
+## Usage
+
+1. **System Access**:
+   - Clients can access the main site to view rooms and make reservations.
+   - Administrators access the admin panel to manage the system.
+
+2. **Authentication and Navigation**:
+   - The platform requires authentication to access critical features, ensuring security.
+   - After logging in, clients can browse the room catalog and make reservations.
+
+3. **Payment Processing**:
+   - The system integrates a payment API to facilitate secure transactions directly through the platform.
+
+4. **Content Management**:
+   - Administrators have full control over site content, being able to add or remove rooms, view reservations, and monitor user activity.
+
