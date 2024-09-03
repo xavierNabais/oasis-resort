@@ -15,7 +15,7 @@ class CreatePromoCodesTable extends Migration
     {
         Schema::create('promo_codes', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
+            $table->string('code', 191)->unique();
             $table->decimal('discount', 5, 2); 
             $table->timestamp('expires_at')->nullable();
             $table->timestamps();
