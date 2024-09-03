@@ -141,9 +141,9 @@
                     <input type="hidden" name="total_price" id="total_price">
                     <div class="form-group">
                         <label for="guests"><strong>Number of guests:</strong></label>
-                            <button type="button" class="quantity-btn" id="decrement">-</button>
-                            <input type="text" id="number_of_guests" class="number_of_guests" name="number_of_guests" value="1" readonly>
-                            <button type="button" class="quantity-btn" id="increment">+</button>
+                        <button type="button" class="quantity-btn" id="decrement">-</button>
+                        <input type="text" id="number_of_guests" class="number_of_guests" name="number_of_guests" value="1" readonly>
+                        <button type="button" class="quantity-btn" id="increment">+</button>
                     </div>
                     <div class="form-group">
                         <label for="date_range">Check-in and Check-out:</label>
@@ -287,47 +287,50 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script>
+        <script>
         $(document).ready(function() {
-            $('#apply-promo').on('click', function() {
-                var promoCode = $('#promo_code').val().trim();
-                if (promoCode) {
-                    $.ajax({
-                        url: '{{ route('promo.validate') }}',
-                        type: 'POST',
-                        data: {
-                            _token: '{{ csrf_token() }}',
-                            code: promoCode
-                        },
-                        success: function(response) {
-                            var totalPrice = parseFloat($('#total_price').val()); // Preço total antes do desconto
-                            if (response.success) {
-                                var discountPercent = parseFloat(response.discount); // Percentual de desconto recebido da API
-                                var discountAmount = (totalPrice * discountPercent) / 100; // Calcula o valor do desconto
-                                var discountedPrice = totalPrice - discountAmount; // Calcula o preço com desconto
-                                $('#total_price_display').val(`${discountedPrice.toFixed(2)} €`); // Atualiza o preço exibido
-                                $('#total_price').val(discountedPrice.toFixed(2)); // Atualiza o valor total escondido
-                                $('#promo-message').text(`Desconto de ${discountPercent} % aplicado.`).removeClass('text-danger').addClass('text-success');
-                            } else {
-                                $('#promo-message').text(response.message || 'Código inválido ou expirado.').removeClass('text-success').addClass('text-danger');
-                            }
-                        },
-                        error: function(xhr) {
-                            $('#promo-message').text('Erro ao validar o código.').removeClass('text-success').addClass('text-danger');
+        $('#apply-promo').on('click', function() {
+            var promoCode = $('#promo_code').val().trim();
+            if (promoCode) {
+                $.ajax({
+                    url: '{{ route('promo.validate') }}',
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        code: promoCode
+                    },
+                    success: function(response) {
+                        var totalPrice = parseFloat($('#total_price').val()); // Preço total antes do desconto
+                        if (response.success) {
+                            var discountPercent = parseFloat(response.discount); // Percentual de desconto recebido da API
+                            var discountAmount = (totalPrice * discountPercent) / 100; // Calcula o valor do desconto
+                            var discountedPrice = totalPrice - discountAmount; // Calcula o preço com desconto
+                            $('#total_price_display').val(`${discountedPrice.toFixed(2)} €`); // Atualiza o preço exibido
+                            $('#total_price').val(discountedPrice.toFixed(2)); // Atualiza o valor total escondido
+                            $('#promo-message').text(`Desconto de ${discountPercent} % aplicado.`).removeClass('text-danger').addClass('text-success');
+
+                            // Desabilita o botão após aplicar o desconto
+                            $('#apply-promo').prop('disabled', true);
+                        } else {
+                            $('#promo-message').text(response.message || 'Código inválido ou expirado.').removeClass('text-success').addClass('text-danger');
                         }
-                    });
-                } else {
-                    $('#promo-message').text('Por favor, insira um código promocional.').removeClass('text-success').addClass('text-danger');
-                }
-            });
+                    },
+                    error: function(xhr) {
+                        $('#promo-message').text('Erro ao validar o código.').removeClass('text-success').addClass('text-danger');
+                    }
+                });
+            } else {
+                $('#promo-message').text('Por favor, insira um código promocional.').removeClass('text-success').addClass('text-danger');
+            }
         });
+    });
     </script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var decrementButton = document.getElementById('decrement');
         var incrementButton = document.getElementById('increment');
-        var guestInput = document.getElementById('guests');
+        var guestInput = document.getElementById('number_of_guests');
 
         decrementButton.addEventListener('click', function() {
             var currentValue = parseInt(guestInput.value);

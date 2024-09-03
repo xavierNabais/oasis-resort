@@ -11,9 +11,10 @@ class Payment extends Model
 
     protected $fillable = [
         'reservation_id',
-        'stripe_charge_id',
         'amount',
-        'currency',
+        'payment_date',
+        'payment_method',
+        'status',
     ];
 
     public function reservation()

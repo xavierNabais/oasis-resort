@@ -86,10 +86,12 @@ class PaymentController extends Controller
             // Registrar o pagamento
             $payment = new Payment();
             $payment->reservation_id = $reservation->id;
-            $payment->stripe_charge_id = $charge->id;
             $payment->amount = $request->input('total_price');
-            $payment->currency = 'usd';
+            $payment->payment_date = now(); 
+            $payment->payment_method = 'Stripe'; 
+            $payment->status = 'Completed';
             $payment->save();
+
     
             Log::info('Pagamento registrado com sucesso:', ['payment' => $payment]);
     
