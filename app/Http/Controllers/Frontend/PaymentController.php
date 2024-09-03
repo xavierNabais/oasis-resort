@@ -10,6 +10,7 @@ use App\Models\Reservation;
 use App\Models\Room;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
+use App\Models\Payment;
 
 class PaymentController extends Controller
 {
@@ -42,13 +43,9 @@ class PaymentController extends Controller
 
     public function process(Request $request)
     {
-        // Log inicial indicando que o método foi chamado
         Log::info('Método process() foi chamado.');
-    
-        // Log dos dados recebidos do formulário
         Log::info('Dados recebidos do formulário:', $request->all());
     
-        // Validar os dados do formulário
         $request->validate([
             'stripeToken' => 'required',
             'room_id' => 'required|exists:rooms,id',
@@ -58,28 +55,23 @@ class PaymentController extends Controller
             'total_price' => 'required|numeric',
         ]);
     
-        // Log após a validação ser bem-sucedida
         Log::info('Validação do formulário passou.');
     
-        // Configurar o Stripe
         Stripe::setApiKey(env('STRIPE_SECRET'));
     
         try {
-            // Log antes de criar o pagamento
             Log::info('Iniciando a criação do pagamento com Stripe.');
     
-            // Criar o pagamento
             $charge = Charge::create([
-                'amount' => $request->input('total_price') * 100, // em centavos
+                'amount' => $request->input('total_price') * 100,
                 'currency' => 'usd',
                 'description' => 'Room Reservation Payment',
                 'source' => $request->input('stripeToken'),
             ]);
     
-            // Log após o pagamento ser criado
             Log::info('Pagamento criado com sucesso:', ['charge' => $charge]);
     
-            // Se o pagamento for bem-sucedido, crie a reserva
+            // Criar a reserva
             $reservation = new Reservation();
             $reservation->room_id = $request->input('room_id');
             $reservation->check_in = $request->input('check_in');
@@ -89,15 +81,22 @@ class PaymentController extends Controller
             $reservation->total_price = $request->input('total_price');
             $reservation->save();
     
-            // Log após a reserva ser criada
             Log::info('Reserva criada com sucesso:', ['reservation' => $reservation]);
+
+            // Registrar o pagamento
+            $payment = new Payment();
+            $payment->reservation_id = $reservation->id;
+            $payment->stripe_charge_id = $charge->id;
+            $payment->amount = $request->input('total_price');
+            $payment->currency = 'usd';
+            $payment->save();
     
-            // Redirecionar para a página de sucesso com os detalhes da reserva
+            Log::info('Pagamento registrado com sucesso:', ['payment' => $payment]);
+    
             return redirect()->route('payment.success', [
                 'reservation_id' => $reservation->id
             ])->with('success', 'Reserva criada com sucesso!');
         } catch (\Exception $e) {
-            // Log do erro que ocorreu
             Log::error('Erro ao processar o pagamento:', ['error' => $e->getMessage()]);
     
             return back()->withErrors(['error' => 'Falha ao processar pagamento: ' . $e->getMessage()]);
