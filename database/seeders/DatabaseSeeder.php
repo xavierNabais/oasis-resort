@@ -9,6 +9,7 @@ use Database\Seeders\PaymentsTableSeeder;
 use Database\Seeders\ReservationsTableSeeder;
 use Database\Seeders\RoomsTableSeeder;
 use Database\Seeders\LogsTableSeeder;
+use Database\Seeders\PromoCodesTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
             ReservationsTableSeeder::class,
             RoomsTableSeeder::class,
             LogsTableSeeder::class,
+            PromoCodesTableSeeder::class,
         ]);
     }
 }
