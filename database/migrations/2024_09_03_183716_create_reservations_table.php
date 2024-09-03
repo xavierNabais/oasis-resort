@@ -15,6 +15,7 @@ class CreateReservationsTable extends Migration
             $table->date('check_in');
             $table->date('check_out');
             $table->integer('number_of_guests');
+            $table->integer('total_price');
             $table->string('status');
             $table->timestamps();
         });

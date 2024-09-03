@@ -16,6 +16,7 @@ class ReservationsTableSeeder extends Seeder
                 'check_in' => '2024-10-01',
                 'check_out' => '2024-10-05',
                 'number_of_guests' => 2,
+                'total_price' => 250,
                 'status' => 'confirmed',
                 'created_at' => now(),
                 'updated_at' => now(),
