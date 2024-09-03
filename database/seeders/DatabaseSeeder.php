@@ -8,6 +8,7 @@ use Database\Seeders\EmployeesTableSeeder;
 use Database\Seeders\PaymentsTableSeeder;
 use Database\Seeders\ReservationsTableSeeder;
 use Database\Seeders\RoomsTableSeeder;
+use Database\Seeders\LogsTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
             PaymentsTableSeeder::class,
             ReservationsTableSeeder::class,
             RoomsTableSeeder::class,
+            LogsTableSeeder::class,
         ]);
     }
 }
