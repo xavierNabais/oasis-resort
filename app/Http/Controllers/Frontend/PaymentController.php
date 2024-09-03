@@ -28,6 +28,7 @@ class PaymentController extends Controller
     
         // Obter os valores do formulário de reserva
         $dateRange = $request->input('date_range'); 
+        $number_of_guests = $request->input('number_of_guests');
         $totalPrice = $request->input('total_price');
         
         // Parse o date_range para check_in e check_out se necessário
@@ -36,7 +37,7 @@ class PaymentController extends Controller
         $checkOut = $dates[1] ?? null;
         
         // Retornar a view com as informações necessárias
-        return view('frontend.payment.index', compact('room', 'stripePublicKey', 'checkIn', 'checkOut', 'totalPrice'));
+        return view('frontend.payment.index', compact('room', 'number_of_guests', 'stripePublicKey', 'checkIn', 'checkOut', 'totalPrice'));
     }
 
     public function process(Request $request)
@@ -51,6 +52,7 @@ class PaymentController extends Controller
         $request->validate([
             'stripeToken' => 'required',
             'room_id' => 'required|exists:rooms,id',
+            'number_of_guests' => 'required|numeric',
             'check_in' => 'required|date',
             'check_out' => 'required|date',
             'total_price' => 'required|numeric',
@@ -82,6 +84,7 @@ class PaymentController extends Controller
             $reservation->room_id = $request->input('room_id');
             $reservation->check_in = $request->input('check_in');
             $reservation->check_out = $request->input('check_out');
+            $reservation->number_of_guests = $request->input('number_of_guests');
             $reservation->client_id = auth()->id();
             $reservation->total_price = $request->input('total_price');
             $reservation->save();

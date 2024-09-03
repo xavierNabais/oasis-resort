@@ -106,6 +106,7 @@
         <div class="details-container">
             <h2>Reservation Summary</h2>
             <p><strong>Room:</strong> {{ $room->name }}</p>
+            <p><strong>Guests:</strong> {{ $number_of_guests }}</p>
             <p><strong>Check-in:</strong> {{ $checkIn }}</p>
             <p><strong>Check-out:</strong> {{ $checkOut }}</p>
             <p><strong>Total Price:</strong> {{ number_format($totalPrice, 2, ',', '.') }} €</p>
@@ -114,6 +115,7 @@
         <form id="payment-form" action="{{ route('payment.process') }}" method="POST">
             @csrf
             <input type="hidden" name="room_id" value="{{ $room->id }}">
+            <input type="hidden" name="number_of_guests" value="{{ $number_of_guests }}">
             <input type="hidden" name="check_in" value="{{ $checkIn }}">
             <input type="hidden" name="check_out" value="{{ $checkOut }}">
             <input type="hidden" name="total_price" value="{{ $totalPrice }}">

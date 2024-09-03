@@ -129,6 +129,7 @@
             <h2>Reservation Details</h2>
             <p><strong>Reservation Date:</strong> {{ \Carbon\Carbon::now()->format('d/m/Y H:i') }}</p>
             <p><strong>Room:</strong> {{ $reservation->room->name }}</p>
+            <p><strong>Guests:</strong> {{ $reservation->number_of_guests }}</p>
             <p><strong>Check-in:</strong> {{ $reservation->check_in }}</p>
             <p><strong>Check-out:</strong> {{ $reservation->check_out }}</p>
             <p><strong>Total Price:</strong> {{ $reservation->total_price}} €</p>

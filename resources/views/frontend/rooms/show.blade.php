@@ -65,6 +65,48 @@
         .flatpickr-day.in-range {
             background-color: #ffe0e0;
         }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-btn {
+            background:none;
+            border: none;
+            color: black;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            outline:none;
+        }
+
+        .quantity-btn:hover {
+            color: #ff5a4d;
+        }
+
+        .quantity-btn:focus{
+            outline:none;
+        }
+
+        .quantity-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .number_of_guests {
+            width: 50px;
+            height:40px;
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -97,7 +139,12 @@
                     <input type="hidden" name="check_in" id="check_in">
                     <input type="hidden" name="check_out" id="check_out">
                     <input type="hidden" name="total_price" id="total_price">
-
+                    <div class="form-group">
+                        <label for="guests"><strong>Number of guests:</strong></label>
+                            <button type="button" class="quantity-btn" id="decrement">-</button>
+                            <input type="text" id="number_of_guests" class="number_of_guests" name="number_of_guests" value="1" readonly>
+                            <button type="button" class="quantity-btn" id="increment">+</button>
+                    </div>
                     <div class="form-group">
                         <label for="date_range">Check-in and Check-out:</label>
                         <input type="text" class="form-control" id="date_range" name="date_range" required>
@@ -275,6 +322,29 @@
             });
         });
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var decrementButton = document.getElementById('decrement');
+        var incrementButton = document.getElementById('increment');
+        var guestInput = document.getElementById('guests');
+
+        decrementButton.addEventListener('click', function() {
+            var currentValue = parseInt(guestInput.value);
+            if (currentValue > 1) {
+                guestInput.value = currentValue - 1;
+            }
+        });
+
+        incrementButton.addEventListener('click', function() {
+            var currentValue = parseInt(guestInput.value);
+            if (currentValue < 8) {
+                guestInput.value = currentValue + 1;
+            }
+        });
+    });
+</script>
+
 
     <!-- Footer -->
 @include('components.footer')

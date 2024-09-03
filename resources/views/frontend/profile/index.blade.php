@@ -136,6 +136,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Room</th>
+                                                <th>Guests</th>
                                                 <th>Check-in</th>
                                                 <th>Check-out</th>
                                                 <th>Price</th>
@@ -145,6 +146,7 @@
                                             @foreach($newReservations as $reservation)
                                                 <tr>
                                                     <td>{{ $reservation->room->name }}</td>
+                                                    <td>{{ $reservation->number_of_guests }}</td>
                                                     <td>{{ $reservation->check_in }}</td>
                                                     <td>{{ $reservation->check_out }}</td>
                                                     <td>{{ $reservation->total_price }} €</td>
@@ -163,16 +165,20 @@
                                         <thead>
                                             <tr>
                                                 <th>Room</th>
-                                                <th>Start Date</th>
-                                                <th>End Date</th>
+                                                <th>Guests</th>
+                                                <th>Check-in</th>
+                                                <th>Check-out</th>
+                                                <th>Price</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($oldReservations as $reservation)
                                                 <tr>
                                                     <td>{{ $reservation->room->name }}</td>
+                                                    <td>{{ $reservation->number_of_guests }}</td>
                                                     <td>{{ $reservation->check_in }}</td>
                                                     <td>{{ $reservation->check_out }}</td>
+                                                    <td>{{ $reservation->total_price }} €</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
