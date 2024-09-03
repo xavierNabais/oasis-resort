@@ -10,7 +10,7 @@ class CreateRoomsTable extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
+            $table->string('name');
             $table->string('type');
             $table->text('description');
             $table->decimal('price_per_night', 8, 2);
