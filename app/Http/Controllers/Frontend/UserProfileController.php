@@ -10,12 +10,13 @@ class UserProfileController extends Controller
 {
     public function index()
     {
+        // Atribui o id do utilizador autenticado a userId
         $userId = auth()->id();
         
         // Obter a data atual
         $today = \Carbon\Carbon::now();
         
-        // Filtrar reservas novas e antigas baseadas na data de término
+        // Filtrar reservas novas e antigas baseadas na data de check_out
         $newReservations = Reservation::where('client_id', $userId)
             ->where('check_out', '>=', $today)
             ->get();

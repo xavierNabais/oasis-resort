@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
 use App\Models\Room;
 use App\Models\Log;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -49,7 +50,7 @@ class AdminController extends Controller
     public function rooms(Request $request)
     {
         // Obtenha todos os tipos de quartos disponíveis para o filtro
-        $roomTypes = ['Single', 'Double', 'Suite', 'Deluxe']; // Substitua pelos tipos reais dos quartos no seu sistema
+        $roomTypes = DB::table('rooms')->distinct()->pluck('type');
     
         // Construa a consulta de quartos com base nos filtros
         $query = Room::query();

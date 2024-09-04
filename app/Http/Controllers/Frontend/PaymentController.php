@@ -32,7 +32,7 @@ class PaymentController extends Controller
         $number_of_guests = $request->input('number_of_guests');
         $totalPrice = $request->input('total_price');
         
-        // Parse o date_range para check_in e check_out se necessário
+        // Parse o date_range para check_in e check_out porque o input é apenas um no frontend
         $dates = explode(' to ', $dateRange);
         $checkIn = $dates[0] ?? null;
         $checkOut = $dates[1] ?? null;
@@ -41,11 +41,13 @@ class PaymentController extends Controller
         return view('frontend.payment.index', compact('room', 'number_of_guests', 'stripePublicKey', 'checkIn', 'checkOut', 'totalPrice'));
     }
 
+    // Função para processar o pagamento
     public function process(Request $request)
     {
         Log::info('Método process() foi chamado.');
         Log::info('Dados recebidos do formulário:', $request->all());
     
+        // Valida os inputs todos
         $request->validate([
             'stripeToken' => 'required',
             'room_id' => 'required|exists:rooms,id',
@@ -57,11 +59,13 @@ class PaymentController extends Controller
     
         Log::info('Validação do formulário passou.');
     
+        //Vai buscar ao ficheiro env a stripe secret api key
         Stripe::setApiKey(env('STRIPE_SECRET'));
     
         try {
             Log::info('Iniciando a criação do pagamento com Stripe.');
     
+            //Utiliza Charge para processar o pagamento
             $charge = Charge::create([
                 'amount' => $request->input('total_price') * 100,
                 'currency' => 'usd',
@@ -106,6 +110,7 @@ class PaymentController extends Controller
         }
     }
 
+    //Função de pagamento concluído com sucesso
     public function success(Request $request)
     {
         // Recuperar o ID da reserva da solicitação

@@ -8,7 +8,6 @@ use App\Models\Reservation;
 use App\Models\Room;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class ReservationController extends Controller
 {
@@ -16,7 +15,7 @@ class ReservationController extends Controller
     {
         $room = Room::findOrFail($roomId);
         
-        // Fetch existing reservations for the room to pass to the view
+        // Procura reservas existentes daquele id de quarto
         $reservations = Reservation::where('room_id', $roomId)->get();
         
         return view('frontend.rooms.reserve', compact('room', 'reservations'));
@@ -24,7 +23,7 @@ class ReservationController extends Controller
 
     public function store(Request $request, $roomId)
     {
-        // Verificar se o usuário está autenticado
+        // Verificar se o utilizador está autenticado
         if (!Auth::check()) {
             return redirect()->route('client.login')->with('error', 'Você precisa estar logado para fazer uma reserva.');
         }
@@ -44,7 +43,7 @@ class ReservationController extends Controller
         $checkIn = Carbon::parse($checkIn);
         $checkOut = Carbon::parse($checkOut);
     
-        // Verificar se as datas estão disponíveis
+        // Verificar se as datas estão disponíveis antes de criar a reserva || SEGURANÇA BACKEND
         $existingReservation = Reservation::where('room_id', $roomId)
             ->where(function ($query) use ($checkIn, $checkOut) {
                 $query->whereBetween('check_in', [$checkIn, $checkOut])
@@ -65,7 +64,7 @@ class ReservationController extends Controller
         $reservation->room_id = $roomId;
         $reservation->check_in = $checkIn;
         $reservation->check_out = $checkOut;
-        $reservation->client_id = auth()->id(); // Assumindo que o usuário está autenticado
+        $reservation->client_id = auth()->id();
         $reservation->save();
     
         return redirect()->route('home')->with('success', 'Reserva criada com sucesso!');

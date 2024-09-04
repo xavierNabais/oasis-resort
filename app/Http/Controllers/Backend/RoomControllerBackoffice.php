@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\DB;
 
 class RoomControllerBackoffice extends Controller
 {
-    // Outros métodos...
-
     // Método para exibir o formulário de edição
     public function edit($id)
     {
@@ -30,6 +28,7 @@ class RoomControllerBackoffice extends Controller
     {
         $room = Room::findOrFail($id);
 
+        // Se for outro tipo de quarto que não esteja na base de dados, retira o input 'new type' em vez do 'type'
         $type = $request->type === 'other' ? $request->new_type : $request->type;
 
         // Validação dos dados
@@ -51,7 +50,7 @@ class RoomControllerBackoffice extends Controller
         // Registrar a ação
         Log::create([
             'action' => "Alterou o quarto com ID $id",
-            'performed_by' => Auth::user()->name, // Ou o nome do secretário
+            'performed_by' => Auth::user()->name,
         ]);
 
         return redirect()->route('admin.rooms')->with('success', 'Quarto atualizado com sucesso!');
@@ -72,7 +71,7 @@ class RoomControllerBackoffice extends Controller
         // Registrar a ação
         Log::create([
             'action' => "Apagou o quarto com ID $id",
-            'performed_by' => Auth::user()->name, // Ou o nome do secretário
+            'performed_by' => Auth::user()->name, 
         ]);
 
         // Retornar a visão com os tipos de quarto

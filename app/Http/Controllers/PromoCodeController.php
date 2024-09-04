@@ -7,12 +7,6 @@ use Illuminate\Http\Request;
 
 class PromoCodeController extends Controller
 {
-    /**
-     * Valida o código promocional.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function validatePromoCode(Request $request)
     {
         // Valida o input do código promocional
@@ -20,9 +14,10 @@ class PromoCodeController extends Controller
             'code' => 'required|string'
         ]);
 
-        // Busca o código promocional no banco de dados
+        // Procura a existência do código promocional na base de dados
         $promoCode = PromoCode::where('code', $request->input('code'))->first();
 
+        // Verifica a data de expiração do código promocional
         if ($promoCode && (!$promoCode->expires_at || $promoCode->expires_at >= now())) {
             return response()->json([
                 'success' => true,

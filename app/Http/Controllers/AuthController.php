@@ -29,14 +29,14 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         Log::info('Tentativa de login com as credenciais:', $credentials);
 
-        // Tentar autenticar o usuário com o guarda padrão 'web'
+        // Tentar autenticar o utilizador com o guarda padrão 'web' para clientes
         if (Auth::guard('web')->attempt($credentials)) {
-            Log::info('Login bem-sucedido para o usuário: ' . $request->input('email'));
+            Log::info('Login bem-sucedido para o cliente: ' . $request->input('email'));
             return redirect()->intended('/');
         }
 
-        Log::warning('Falha no login para o usuário: ' . $request->input('email'));
-        return redirect()->back()->withErrors(['email' => 'Credenciais inválidas.']);
+        Log::warning('Falha no login para o cliente: ' . $request->input('email'));
+        return redirect()->back()->withErrors(['email' => 'Credenciais de cliente inválidas.']);
     }
 
     public function signup(Request $request)
@@ -88,7 +88,7 @@ class AuthController extends Controller
 
     public function logout()
     {
-        Log::info('Usuário desconectado.');
+        Log::info('Cliente desconectado.');
         Auth::logout();
         return redirect('/');
     }
