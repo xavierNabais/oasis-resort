@@ -69,9 +69,6 @@ class RoomControllerBackoffice extends Controller
             $room->delete();
         }
 
-        // Buscar os tipos de quarto distintos da tabela 'rooms'
-        $roomTypes = DB::table('rooms')->distinct()->pluck('type');
-
         // Registrar a ação
         Log::create([
             'action' => "Apagou o quarto com ID $id",
